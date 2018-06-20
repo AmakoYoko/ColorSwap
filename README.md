@@ -32,6 +32,7 @@ ColorSwap est un bot Discord codé en Python ^^
 |?play | Joue une musique depuis une url (youtube etc) |
 |?skip | Met la prochaine musique|
 |?volume | Change le volume (normalement) |
+|?stop | Stop la musique :3 |
 |?purge | Purge le serveur des messages ^^|
 
 
