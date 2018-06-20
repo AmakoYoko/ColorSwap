@@ -1,7 +1,5 @@
-
-import asyncio
-import discord
 from discord.ext import commands
+from header import *
 
 if not discord.opus.is_loaded():
     # the 'opus' library here is opus.dll on windows
@@ -224,14 +222,13 @@ class Music:
             await self.bot.say('Lecture {} [PassageWESH: {}/3]'.format(state.current, skip_count))
 
 
-    
+
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('?'))
 bot.add_cog(Music(bot))
 bot.remove_command('help')
 
 @bot.event
 async def on_ready():
-    print('Logged in as:\n{0} (ID: {0.id})'.format(bot.user))
+    print('Audio Module:\n{0} (ID: {0.id})'.format(bot.user))
 
-bot.run('')
-
+bot.run(TOKEN)

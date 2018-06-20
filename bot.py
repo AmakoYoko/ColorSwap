@@ -1,26 +1,13 @@
-import random
-import asyncio
-import discord
-import aiohttp
-import json
-import os
-import re
-from discord import Game
-from discord.ext.commands import Bot
-from googletrans import Translator
-
-BOT_PREFIX = ("?")
-TOKEN = ""  
+from header import *
 
 client = Bot(command_prefix=BOT_PREFIX)
 translator = Translator()
 
-      
+
 @client.event
 async def on_ready():
 
     print("Logged in as " + client.user.name)
-
 
 @client.command(pass_context = 1)
 async def aide(context):
@@ -59,7 +46,7 @@ async def aide(context):
 
 @client.command(pass_context=True, no_pm=True)
 async def avatar(ctx, member: discord.Member):
-   
+
     await client.reply("{}".format(member.avatar_url))
 
 #@client.command(pass_context=True, hidden=True)
@@ -82,12 +69,12 @@ async def invite():
 @client.command(pass_context = 1)
 async def neko(context):
     url = 'https://nekos.life/api/v2/img/neko'
-    async with aiohttp.ClientSession() as session: 
+    async with aiohttp.ClientSession() as session:
         try:
             raw_response = await session.get(url)
             response = await raw_response.text()
             response = json.loads(response)
-            embed = discord.Embed(colour=discord.Colour.blue())        
+            embed = discord.Embed(colour=discord.Colour.blue())
             embed.set_image(url=response['url'])
             await client.send_message(context.message.channel, embed=embed)
         except:
@@ -96,9 +83,9 @@ async def neko(context):
 @client.command(pass_context = 1)
 async def blague(context):
     url = 'https://08ad1pao69.execute-api.us-east-1.amazonaws.com/dev/random_joke'
-    async with aiohttp.ClientSession() as session: 
+    async with aiohttp.ClientSession() as session:
         raw_response = await session.get(url)
-        messagemodif = await client.send_message(context.message.channel, 'Chargement') 
+        messagemodif = await client.send_message(context.message.channel, 'Chargement')
         response = await raw_response.text()
         response = json.loads(response)
         pronunces = translator.translate(response['setup'], dest='fr')
@@ -106,30 +93,30 @@ async def blague(context):
 
         await asyncio.sleep(2)
         pronunces = translator.translate(response['punchline'], dest='fr')
-        await client.say(pronunces.pronunciation)        
+        await client.say(pronunces.pronunciation)
 
 
 
 @client.command(pass_context = 1)
 async def nekomh(context):
     url = 'https://nekos.life/api/v2/img/lewdk'
-    async with aiohttp.ClientSession() as session:  
+    async with aiohttp.ClientSession() as session:
         raw_response = await session.get(url)
         response = await raw_response.text()
         response = json.loads(response)
-        embed = discord.Embed(colour=discord.Colour.blue())        
+        embed = discord.Embed(colour=discord.Colour.blue())
         embed.set_image(url=response['url'])
         await client.send_message(context.message.channel, embed=embed)
-        
+
 
 @client.command(pass_context = 1)
 async def hug(context):
     url = 'https://nekos.life/api/v2/img/hug'
-    async with aiohttp.ClientSession() as session:  
+    async with aiohttp.ClientSession() as session:
         raw_response = await session.get(url)
         response = await raw_response.text()
         response = json.loads(response)
-        embed = discord.Embed(colour=discord.Colour.blue())        
+        embed = discord.Embed(colour=discord.Colour.blue())
         embed.set_image(url=response['url'])
         await client.send_message(context.message.channel, embed=embed)
 
@@ -149,20 +136,20 @@ async def shifumi(context):
 @client.command(pass_context = 1)
 async def slap(context):
     url = 'https://nekos.life/api/v2/img/slap'
-    async with aiohttp.ClientSession() as session:  
+    async with aiohttp.ClientSession() as session:
         raw_response = await session.get(url)
         response = await raw_response.text()
         response = json.loads(response)
-        embed = discord.Embed(colour=discord.Colour.blue())        
+        embed = discord.Embed(colour=discord.Colour.blue())
         embed.set_image(url=response['url'])
         await client.send_message(context.message.channel, embed=embed)
-        
+
 @client.command(pass_context = 1)
 async def purge(context, number : int):
     if context.message.author.server_permissions.administrator:
 
         deleted = await client.purge_from(context.message.channel, limit = number)
-        first_message_var = await client.send_message(context.message.channel, '{} message(s) supprimé(s)'.format(len(deleted))) 
+        first_message_var = await client.send_message(context.message.channel, '{} message(s) supprimé(s)'.format(len(deleted)))
 
         await asyncio.sleep(2)
 
@@ -207,4 +194,3 @@ async def list_servers():
 client.remove_command('help')
 client.loop.create_task(list_servers())
 client.run(TOKEN)
-

@@ -1,20 +1,8 @@
-
-import random
-import asyncio
-import discord
-
 from pymysql.converters import conversions
-import aiohttp
-import json
-import os
 import pymysql
-import re
-from discord import Game
-from discord.ext.commands import Bot
+from header import *
 
 
-BOT_PREFIX = ("?")
-TOKEN = ""
 
 client = Bot(command_prefix=BOT_PREFIX)
 
