@@ -2,6 +2,7 @@
 
 [![PyPI](https://img.shields.io/pypi/pyversions/discord.py.svg)](https://pypi.python.org/pypi/discord.py/)
 
+
 ColorSwap est un bot Discord codé en Python ^^
 
   - Permet d'avoir son pseudo en arc-en-ciel :3
@@ -50,7 +51,7 @@ Ceux grâce à qui le bot est en vie ^^
 | ------ | ------ | ------ |------ |------ |
 |lilian_potterhead | / |/|/|/|
 |_strangecraft_Ines |  / |/|/|/|
-|Norah |  / |/|/|/|
+|Norah |  / |/|[![Norah28](https://github.com/Norah28)]|/|
 
 
 
